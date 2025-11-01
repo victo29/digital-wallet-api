@@ -1,0 +1,5 @@
+rootProject.name = 'digital-wallet-api'
+include 'usecase'
+include 'application'
+include 'infrastructure'
+include 'core'
