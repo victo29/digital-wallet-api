@@ -1,6 +1,6 @@
 package com.victortavares.usecase;
 
-public interface TaxNumberAvaliableUseCase {
+public interface TaxNumberAvailableUseCase {
 
     Boolean taxNumberAvaliable(String taxNumber);
 }

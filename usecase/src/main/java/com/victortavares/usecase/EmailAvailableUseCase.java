@@ -1,6 +1,6 @@
 package com.victortavares.usecase;
 
-public interface EmailAvaliableUseCase {
+public interface EmailAvailableUseCase {
 
     Boolean emailAvaliable(String email);
 }
