@@ -7,6 +7,7 @@ public enum ErrorCodeEnum {
     ON0004("Houve um erro na criação do usuário", "ON-0004"),
     TR0001("Usuário lojista não tem a função transferência disponível", "TR-0001"),
     TR0002("Saldo indisponível", "TR-0002"),
+    TR0003("Houve um erro ao realizar a transferência", "TR-0003"),
     TRP0001("Pin inválido","TRP-0001"),
 
     ;

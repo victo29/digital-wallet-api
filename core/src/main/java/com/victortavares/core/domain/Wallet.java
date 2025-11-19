@@ -63,7 +63,7 @@ public class Wallet {
         return balance;
     }
 
-    public void receiveValue(BigDecimal value){
+    public void receiveTransfer(BigDecimal value){
         this.balance.add(value);
     }
 
