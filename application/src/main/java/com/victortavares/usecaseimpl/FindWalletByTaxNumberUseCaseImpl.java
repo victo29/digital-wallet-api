@@ -10,6 +10,10 @@ public class FindWalletByTaxNumberUseCaseImpl implements FindWalletByTaxNumberUs
 
     private FindWalletByTaxNumberGateway findWalletByTaxNumberGateway;
 
+    public FindWalletByTaxNumberUseCaseImpl(FindWalletByTaxNumberGateway findWalletByTaxNumberGateway) {
+        this.findWalletByTaxNumberGateway = findWalletByTaxNumberGateway;
+    }
+
     @Override
     public Wallet findByTaxNumber(String taxNumber) throws NotFoundException {
         var wallet = findWalletByTaxNumberGateway.findByTaxNumber(taxNumber);

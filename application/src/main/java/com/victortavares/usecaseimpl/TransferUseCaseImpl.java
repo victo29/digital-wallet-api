@@ -20,11 +20,12 @@ public class TransferUseCaseImpl  implements TransferUseCase {
     private TransferGeteway transferGeteway;
     private UserNotificationUseCase userNotificationUseCase;
 
-    public TransferUseCaseImpl(FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase, TransactionValidateUseCase transactionValidateUseCase, CreateTransactionUseCase createTransactionUseCase, TransferGeteway transferGeteway) {
+    public TransferUseCaseImpl(FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase, TransactionValidateUseCase transactionValidateUseCase, CreateTransactionUseCase createTransactionUseCase, TransferGeteway transferGeteway, UserNotificationUseCase userNotificationUseCase) {
         this.findWalletByTaxNumberUseCase = findWalletByTaxNumberUseCase;
         this.transactionValidateUseCase = transactionValidateUseCase;
         this.createTransactionUseCase = createTransactionUseCase;
         this.transferGeteway = transferGeteway;
+        this.userNotificationUseCase = userNotificationUseCase;
     }
 
     @Override
