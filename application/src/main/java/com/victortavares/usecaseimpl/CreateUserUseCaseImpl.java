@@ -4,6 +4,7 @@ import com.victortavares.core.domain.TransactionPin;
 import com.victortavares.core.domain.User;
 import com.victortavares.core.domain.Wallet;
 import com.victortavares.core.exception.EmailException;
+import com.victortavares.core.exception.InternalServerErrorException;
 import com.victortavares.core.exception.TaxNumberException;
 import com.victortavares.core.exception.TransactionPinException;
 import com.victortavares.core.exception.enums.ErrorCodeEnum;
@@ -19,23 +20,17 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     private EmailAvailableUseCase emailAvailableUseCase;
 
-    private CreateWalletUseCase createWalletUseCase;
-
-    private CreateTransactionPinUseCase createTransactionPinUseCase;
-
     private CreateUserGeteway createUserGeteway;
 
 
-    public CreateUserUseCaseImpl(TaxNumberAvailableUseCase taxNumberAvailableUseCase, EmailAvailableUseCase emailAvailableUseCase, CreateWalletUseCase createWalletUseCase, CreateTransactionPinUseCase transactionPinUseCase, CreateTransactionPinUseCase createTransactionPinUseCase, CreateUserGeteway createUserGeteway) {
+    public CreateUserUseCaseImpl(TaxNumberAvailableUseCase taxNumberAvailableUseCase, EmailAvailableUseCase emailAvailableUseCase, CreateUserGeteway createUserGeteway) {
         this.taxNumberAvailableUseCase = taxNumberAvailableUseCase;
         this.emailAvailableUseCase = emailAvailableUseCase;
-        this.createWalletUseCase = createWalletUseCase;
-        this.createTransactionPinUseCase = createTransactionPinUseCase;
         this.createUserGeteway = createUserGeteway;
     }
 
     @Override
-    public void create(User user, String pin) throws TaxNumberException, EmailException, TransactionPinException {
+    public void create(User user, String pin) throws TaxNumberException, EmailException, TransactionPinException, InternalServerErrorException {
         if(taxNumberAvailableUseCase.taxNumberAvaliable(user.getTaxNumber().getValue())){
             throw new TaxNumberException(ErrorCodeEnum.ON0002.getMessage(), ErrorCodeEnum.ON0002.getCode());
         }
@@ -44,9 +39,8 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
             throw new EmailException(ErrorCodeEnum.ON0003.getMessage(), ErrorCodeEnum.ON0003.getCode());
         }
 
-        var userSaved = createUserGeteway.create(user);
-
-        createWalletUseCase.create(new Wallet(BigDecimal.ZERO, userSaved));
-        createTransactionPinUseCase.create(new TransactionPin(userSaved, pin));
+        if(!createUserGeteway.create(user, new Wallet(BigDecimal.ZERO, user), new TransactionPin(user, pin)));{
+            throw new InternalServerErrorException(ErrorCodeEnum.ON0004.getMessage(), ErrorCodeEnum.ON0004.getCode());
+        }
     }
 }

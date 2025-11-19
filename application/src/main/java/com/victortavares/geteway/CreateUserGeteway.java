@@ -1,9 +1,11 @@
 package com.victortavares.geteway;
 
+import com.victortavares.core.domain.TransactionPin;
 import com.victortavares.core.domain.User;
+import com.victortavares.core.domain.Wallet;
 
 public interface CreateUserGeteway {
 
-    User create(User user);
+    Boolean create(User user, Wallet wallet, TransactionPin transactionPin);
 
 }
