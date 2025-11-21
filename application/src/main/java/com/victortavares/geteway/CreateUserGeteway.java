@@ -6,6 +6,6 @@ import com.victortavares.core.domain.Wallet;
 
 public interface CreateUserGeteway {
 
-    Boolean create(User user, Wallet wallet, TransactionPin transactionPin);
+    Boolean create(User user, Wallet wallet);
 
 }

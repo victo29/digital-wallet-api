@@ -6,25 +6,29 @@ import com.victortavares.core.exception.enums.ErrorCodeEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Wallet {
     private Long id;
+    private TransactionPin transactionPin;
     private BigDecimal balance;
     private User user;
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
 
-    public Wallet(Long id, BigDecimal balance, User user, LocalDateTime createdAt, LocalDateTime updateAt) {
+    public Wallet(Long id, BigDecimal balance, User user, LocalDateTime createdAt, LocalDateTime updateAt, TransactionPin transactionPin) {
         this.id = id;
+        this.transactionPin = transactionPin;
         this.balance = balance;
         this.user = user;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
 
-    public Wallet(BigDecimal balance, User user) {
+    public Wallet(BigDecimal balance, User user,  TransactionPin transactionPin) {
         this.balance = balance;
         this.user = user;
+        this.transactionPin = transactionPin;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -63,6 +67,14 @@ public class Wallet {
         return balance;
     }
 
+    public TransactionPin getTransactionPin() {
+        return transactionPin;
+    }
+
+    public void setTransactionPin(TransactionPin transactionPin) {
+        this.transactionPin = transactionPin;
+    }
+
     public void receiveTransfer(BigDecimal value){
         this.balance.add(value);
     }
@@ -77,5 +89,17 @@ public class Wallet {
         }
 
         this.balance.subtract(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Wallet wallet = (Wallet) o;
+        return Objects.equals(getId(), wallet.getId()) && Objects.equals(getTransactionPin(), wallet.getTransactionPin()) && Objects.equals(getBalance(), wallet.getBalance()) && Objects.equals(getUser(), wallet.getUser()) && Objects.equals(getCreatedAt(), wallet.getCreatedAt()) && Objects.equals(getUpdateAt(), wallet.getUpdateAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTransactionPin(), getBalance(), getUser(), getCreatedAt(), getUpdateAt());
     }
 }

@@ -4,19 +4,18 @@ import com.victortavares.core.exception.TransactionPinException;
 import com.victortavares.core.exception.enums.ErrorCodeEnum;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TransactionPin {
     private Long id;
-    private User user;
     private String pin;
     private  Integer attempt;
     private Boolean blocked;
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
 
-    public TransactionPin(Long id, User user, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updateAt) {
+    public TransactionPin(Long id, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updateAt) {
         this.id = id;
-        this.user = user;
         this.pin = pin;
         this.attempt = attempt;
         this.blocked = blocked;
@@ -24,8 +23,7 @@ public class TransactionPin {
         this.updateAt = updateAt;
     }
 
-    public TransactionPin(User user, String pin) throws TransactionPinException {
-        this.user = user;
+    public TransactionPin(String pin) throws TransactionPinException {
         setPin(pin);
         this.attempt = 3;
         this.blocked = false;
@@ -41,14 +39,6 @@ public class TransactionPin {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getPin() {
@@ -92,5 +82,17 @@ public class TransactionPin {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionPin that = (TransactionPin) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getPin(), that.getPin()) && Objects.equals(getAttempt(), that.getAttempt()) && Objects.equals(getBlocked(), that.getBlocked()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && Objects.equals(getUpdateAt(), that.getUpdateAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getPin(), getAttempt(), getBlocked(), getCreatedAt(), getUpdateAt());
     }
 }
