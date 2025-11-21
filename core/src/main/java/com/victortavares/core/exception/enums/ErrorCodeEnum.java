@@ -13,6 +13,7 @@ public enum ErrorCodeEnum {
 
     TRP0001("Pin inválido","TRP-0001"),
     TRP0002("Pin de transação bloqueado", "TRP-0002"),
+    TRP0003("Pin incorreto, %d tentativa(s) restante(s)", "TRP-0003"),
 
     WA0001("Carteira não encontrada", "WA-0001"),
 
@@ -45,5 +46,9 @@ public enum ErrorCodeEnum {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public static String trp0003GetMessage(Integer attempt){
+        return  String.format(TRP0003.message, attempt);
     }
 }
