@@ -1,0 +1,19 @@
+package com.victortavares.infrastructure.mapper;
+
+import com.victortavares.core.domain.TransactionPin;
+import com.victortavares.infrastructure.entity.TransactionPinEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TransactionPinMapper {
+
+    public TransactionPinEntity toTransactionPinEntity(TransactionPin transactionPin){
+        return new TransactionPinEntity(
+                transactionPin.getPin(),
+                transactionPin.getAttempt(),
+                transactionPin.getBlocked(),
+                transactionPin.getCreatedAt(),
+                transactionPin.getUpdateAt()
+        );
+    }
+}

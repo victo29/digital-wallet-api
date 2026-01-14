@@ -37,4 +37,11 @@ public class WalletEntity {
     @Column(name = "UpdateAt")
     private LocalDateTime updateAt;
 
+    public WalletEntity(BigDecimal balance, UserEntity userEntity, TransactionPinEntity transactionPinEntity, LocalDateTime createAt, LocalDateTime updateAt) {
+        this.balance = balance;
+        this.userEntity = userEntity;
+        this.transactionPinEntity = transactionPinEntity;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
 }
