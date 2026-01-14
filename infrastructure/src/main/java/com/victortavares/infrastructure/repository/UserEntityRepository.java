@@ -1,6 +1,6 @@
-package com.victortavares.repository;
+package com.victortavares.infrastructure.repository;
 
-import com.victortavares.entity.UserEntity;
+import com.victortavares.infrastructure.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

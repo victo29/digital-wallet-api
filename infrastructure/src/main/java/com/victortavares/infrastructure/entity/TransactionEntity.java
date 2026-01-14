@@ -1,4 +1,4 @@
-package com.victortavares.entity;
+package com.victortavares.infrastructure.entity;
 
 import com.victortavares.core.domain.enums.TransactionStatusEnum;
 import jakarta.persistence.*;

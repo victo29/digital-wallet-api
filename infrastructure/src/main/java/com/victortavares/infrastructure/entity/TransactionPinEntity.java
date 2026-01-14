@@ -1,35 +1,31 @@
-package com.victortavares.entity;
+package com.victortavares.infrastructure.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Wallets")
-@Table
-public class WalletEntity {
+@AllArgsConstructor
+@Entity
+@Table(name= "TransactionsPin")
+public class TransactionPinEntity {
 
     @Column(name = "Id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Balance", nullable = false)
-    private BigDecimal balance;
+    @Column(name = "Pin", nullable = false)
+    private String pin;
 
-    @OneToOne
-    @JoinColumn(name = "UserId")
-    private UserEntity userEntity;
+    @Column(name = "Attempt", nullable = false)
+    private int attempt;
 
-    @OneToOne
-    @JoinColumn(name = "TransactionPinId")
-    private TransactionPinEntity transactionPinEntity;
+    @Column(name = "Blocked", nullable = false)
+    private Boolean blocked;
 
     @Column(name = "CreateAt", nullable = false)
     private LocalDateTime createAt;
