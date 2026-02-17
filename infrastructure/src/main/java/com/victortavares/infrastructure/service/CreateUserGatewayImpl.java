@@ -42,7 +42,7 @@ public class CreateUserGatewayImpl implements CreateUserGeteway {
             log.info("User created successfully::CreateUserGatewayImpl");
             return true;
         }catch (Exception e){
-            log.error("There was an error creating the user::::CreateUserGatewayImpl");
+            log.error("There was an error creating the user::CreateUserGatewayImpl");
             return false;
         }
     }
