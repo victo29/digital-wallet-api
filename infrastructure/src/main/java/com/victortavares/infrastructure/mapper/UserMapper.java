@@ -1,6 +1,8 @@
 package com.victortavares.infrastructure.mapper;
 
+import com.victortavares.core.domain.TaxNumber;
 import com.victortavares.core.domain.User;
+import com.victortavares.infrastructure.dto.request.CreateUserRequest;
 import com.victortavares.infrastructure.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,16 @@ public class UserMapper {
                 user.getType(),
                 user.getCreatedAt(),
                 user.getUpdateAt()
+        );
+    }
+
+    public User toUser(CreateUserRequest request) throws Exception {
+        return new User(
+            request.email(),
+            request.password(),
+            new TaxNumber(request.taxNumber()),
+            request.fullName(),
+            request.type()
         );
     }
 }
