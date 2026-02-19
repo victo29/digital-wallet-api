@@ -10,10 +10,12 @@ import com.victortavares.infrastructure.mapper.WalletMapper;
 import com.victortavares.infrastructure.repository.TransactionPinEntityRepository;
 import com.victortavares.infrastructure.repository.UserEntityRepository;
 import com.victortavares.infrastructure.repository.WalletEntityRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import static com.victortavares.infrastructure.utils.Utilities.log;
 
 @Service
+@Transactional
 public class CreateUserGatewayImpl implements CreateUserGeteway {
 
     private UserEntityRepository userEntityRepository;
