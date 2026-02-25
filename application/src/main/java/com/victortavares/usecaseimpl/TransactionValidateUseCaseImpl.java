@@ -3,12 +3,12 @@ package com.victortavares.usecaseimpl;
 import com.victortavares.core.domain.Transaction;
 import com.victortavares.core.exception.TransferException;
 import com.victortavares.core.exception.enums.ErrorCodeEnum;
-import com.victortavares.geteway.TransactionValidateGateway;
+import com.victortavares.gateway.TransactionValidateGateway;
 import com.victortavares.usecase.TransactionValidateUseCase;
 
 public class TransactionValidateUseCaseImpl implements TransactionValidateUseCase {
 
-    private TransactionValidateGateway transactionValidateGateway;
+    private final TransactionValidateGateway transactionValidateGateway;
 
     public TransactionValidateUseCaseImpl(TransactionValidateGateway transactionValidateGateway) {
         this.transactionValidateGateway = transactionValidateGateway;

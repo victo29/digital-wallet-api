@@ -1,14 +1,14 @@
 package com.victortavares.infrastructure.service;
 
 import com.victortavares.core.domain.Transaction;
-import com.victortavares.geteway.TransactionValidateGateway;
+import com.victortavares.gateway.TransactionValidateGateway;
 import com.victortavares.infrastructure.client.ApiValidateService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionValidateGatewayImpl implements TransactionValidateGateway {
 
-    private ApiValidateService apiValidateService;
+    private final ApiValidateService apiValidateService;
 
     public TransactionValidateGatewayImpl(ApiValidateService apiValidateService) {
         this.apiValidateService = apiValidateService;
