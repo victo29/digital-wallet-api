@@ -14,14 +14,18 @@ public enum ErrorCodeEnum {
     TRP0001("Pin inválido","TRP-0001"),
     TRP0002("Pin de transação bloqueado", "TRP-0002"),
     TRP0003("Pin incorreto, %d tentativa(s) restante(s)", "TRP-0003"),
+    TRP0004("Houve um erro ao atualizar tentativas do pin", "TRP-0004"),
 
     WA0001("Carteira não encontrada", "WA-0001"),
 
     NO0001("Houve um erro na notificação do usuário","NO-0001"),
 
-    ATH0001("Houve um erro na autenticação", "ATH-0001")
+    ATH0001("Houve um erro na autenticação", "ATH-0001"),
 
-    ;
+    RQ0001("Invalid request", "RQ-0001")
+
+
+            ;
 
     private String message;
 
