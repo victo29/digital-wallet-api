@@ -1,6 +1,5 @@
 package com.victortavares.infrastructure.controller;
 
-import com.victortavares.core.domain.Transaction;
 import com.victortavares.infrastructure.dto.request.TransferRequest;
 import com.victortavares.infrastructure.dto.response.BaseResponse;
 import com.victortavares.infrastructure.dto.response.ConsultBalanceResponse;
