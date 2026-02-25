@@ -1,21 +1,20 @@
 package com.victortavares.usecaseimpl;
 
-import com.victortavares.core.domain.Wallet;
-import com.victortavares.geteway.ConsultBalanceGateway;
 import com.victortavares.usecase.ConsultBalanceUseCase;
+import com.victortavares.usecase.FindWalletByTaxNumberUseCase;
 
 import java.math.BigDecimal;
 
 public class ConsultBalanceUseCaseImpl implements ConsultBalanceUseCase {
 
-    private ConsultBalanceGateway consultBalanceGateway;
+    private final FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase;
 
-    public ConsultBalanceUseCaseImpl(ConsultBalanceGateway consultBalanceGateway) {
-        this.consultBalanceGateway = consultBalanceGateway;
+    public ConsultBalanceUseCaseImpl(FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase) {
+        this.findWalletByTaxNumberUseCase = findWalletByTaxNumberUseCase;
     }
 
     @Override
-    public BigDecimal consult(Wallet wallet) {
-        return consultBalanceGateway.consult(wallet);
+    public BigDecimal consult(String taxNumber) throws Exception {
+        return  findWalletByTaxNumberUseCase.findByTaxNumber(taxNumber).getBalance();
     }
 }
