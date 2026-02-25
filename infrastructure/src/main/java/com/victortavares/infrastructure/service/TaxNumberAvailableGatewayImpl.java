@@ -1,6 +1,6 @@
 package com.victortavares.infrastructure.service;
 
-import com.victortavares.geteway.TaxNumberAvailableGateway;
+import com.victortavares.gateway.TaxNumberAvailableGateway;
 import com.victortavares.infrastructure.repository.UserEntityRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import static com.victortavares.infrastructure.utils.Utilities.log;
 @Service
 public class TaxNumberAvailableGatewayImpl implements TaxNumberAvailableGateway {
 
-    private UserEntityRepository userEntityRepository;
+    private final UserEntityRepository userEntityRepository;
 
     public TaxNumberAvailableGatewayImpl(UserEntityRepository userEntityRepository) {
         this.userEntityRepository = userEntityRepository;
