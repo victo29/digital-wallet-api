@@ -2,13 +2,13 @@ package com.victortavares.usecaseimpl;
 
 import com.victortavares.core.exception.AuthenticateException;
 import com.victortavares.core.exception.enums.ErrorCodeEnum;
-import com.victortavares.geteway.UserAuthenticateGateway;
+import com.victortavares.gateway.UserAuthenticateGateway;
 import com.victortavares.usecase.UserAuthenticateUseCase;
 
 
 public class UserAuthenticateUseCaseImpl implements UserAuthenticateUseCase {
 
-    private UserAuthenticateGateway userAuthenticateGateway;
+    private final UserAuthenticateGateway userAuthenticateGateway;
 
     public UserAuthenticateUseCaseImpl(UserAuthenticateGateway userAuthenticateGateway) {
         this.userAuthenticateGateway = userAuthenticateGateway;
