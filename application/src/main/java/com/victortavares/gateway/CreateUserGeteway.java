@@ -1,4 +1,4 @@
-package com.victortavares.geteway;
+package com.victortavares.gateway;
 
 import com.victortavares.core.domain.User;
 import com.victortavares.core.domain.Wallet;

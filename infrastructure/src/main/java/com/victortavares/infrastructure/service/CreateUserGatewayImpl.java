@@ -2,8 +2,7 @@ package com.victortavares.infrastructure.service;
 
 import com.victortavares.core.domain.User;
 import com.victortavares.core.domain.Wallet;
-import com.victortavares.geteway.CreateUserGeteway;
-import com.victortavares.infrastructure.entity.TransactionPinEntity;
+import com.victortavares.gateway.CreateUserGeteway;
 import com.victortavares.infrastructure.mapper.TransactionPinMapper;
 import com.victortavares.infrastructure.mapper.UserMapper;
 import com.victortavares.infrastructure.mapper.WalletMapper;
@@ -18,12 +17,12 @@ import static com.victortavares.infrastructure.utils.Utilities.log;
 @Transactional
 public class CreateUserGatewayImpl implements CreateUserGeteway {
 
-    private UserEntityRepository userEntityRepository;
-    private UserMapper userMapper;
-    private TransactionPinEntityRepository transactionPinEntityRepository;
-    private TransactionPinMapper transactionPinMapper;
-    private WalletEntityRepository walletEntityRepository;
-    private WalletMapper walletMapper;
+    private final UserEntityRepository userEntityRepository;
+    private  final UserMapper userMapper;
+    private final TransactionPinEntityRepository transactionPinEntityRepository;
+    private final TransactionPinMapper transactionPinMapper;
+    private final WalletEntityRepository walletEntityRepository;
+    private final WalletMapper walletMapper;
 
     public CreateUserGatewayImpl(UserEntityRepository userEntityRepository, UserMapper userMapper, TransactionPinEntityRepository transactionPinEntityRepository, TransactionPinMapper transactionPinMapper, WalletEntityRepository walletEntityRepository, WalletMapper walletMapper) {
         this.userEntityRepository = userEntityRepository;
