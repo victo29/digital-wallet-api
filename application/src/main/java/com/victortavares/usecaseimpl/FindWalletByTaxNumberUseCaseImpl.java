@@ -3,12 +3,12 @@ package com.victortavares.usecaseimpl;
 import com.victortavares.core.domain.Wallet;
 import com.victortavares.core.exception.NotFoundException;
 import com.victortavares.core.exception.enums.ErrorCodeEnum;
-import com.victortavares.geteway.FindWalletByTaxNumberGateway;
+import com.victortavares.gateway.FindWalletByTaxNumberGateway;
 import com.victortavares.usecase.FindWalletByTaxNumberUseCase;
 
 public class FindWalletByTaxNumberUseCaseImpl implements FindWalletByTaxNumberUseCase {
 
-    private FindWalletByTaxNumberGateway findWalletByTaxNumberGateway;
+    private final FindWalletByTaxNumberGateway findWalletByTaxNumberGateway;
 
     public FindWalletByTaxNumberUseCaseImpl(FindWalletByTaxNumberGateway findWalletByTaxNumberGateway) {
         this.findWalletByTaxNumberGateway = findWalletByTaxNumberGateway;

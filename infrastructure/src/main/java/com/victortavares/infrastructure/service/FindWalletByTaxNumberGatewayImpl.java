@@ -1,7 +1,7 @@
 package com.victortavares.infrastructure.service;
 
 import com.victortavares.core.domain.Wallet;
-import com.victortavares.geteway.FindWalletByTaxNumberGateway;
+import com.victortavares.gateway.FindWalletByTaxNumberGateway;
 import com.victortavares.infrastructure.mapper.WalletMapper;
 import com.victortavares.infrastructure.repository.WalletEntityRepository;
 import org.springframework.stereotype.Service;
