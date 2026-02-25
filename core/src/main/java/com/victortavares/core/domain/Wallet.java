@@ -76,7 +76,7 @@ public class Wallet {
     }
 
     public void receiveTransfer(BigDecimal value){
-        this.balance.add(value);
+        this.balance = this.balance.add(value);
     }
 
     public void transfer(BigDecimal value) throws TransferException  {
@@ -88,7 +88,7 @@ public class Wallet {
             throw new TransferException(ErrorCodeEnum.TR0002.getMessage(), ErrorCodeEnum.TR0002.getCode());
         }
 
-        this.balance.subtract(value);
+        this.balance = this.balance.subtract(value);
     }
 
     @Override
