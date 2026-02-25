@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class WalletMapper {
 
-    private TransactionPinMapper transactionPinMapper;
-    private UserMapper userMapper;
+    private final TransactionPinMapper transactionPinMapper;
+    private final UserMapper userMapper;
 
     public WalletMapper(TransactionPinMapper transactionPinMapper, UserMapper userMapper) {
         this.transactionPinMapper = transactionPinMapper;
