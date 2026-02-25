@@ -1,12 +1,12 @@
 package com.victortavares.usecaseimpl;
 
 import com.victortavares.core.domain.Transaction;
-import com.victortavares.geteway.UserNotificationGateway;
+import com.victortavares.gateway.UserNotificationGateway;
 import com.victortavares.usecase.UserNotificationUseCase;
 
 public class UserNotificationUseCaseImpl implements UserNotificationUseCase {
 
-    private UserNotificationGateway userNotificationGateway;
+    private final UserNotificationGateway userNotificationGateway;
 
     public UserNotificationUseCaseImpl(UserNotificationGateway userNotificationGateway) {
         this.userNotificationGateway = userNotificationGateway;
