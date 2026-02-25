@@ -1,13 +1,13 @@
 package com.victortavares.infrastructure.service;
 
-import com.victortavares.geteway.EmailAvailableGetway;
+import com.victortavares.gateway.EmailAvailableGetway;
 import com.victortavares.infrastructure.repository.UserEntityRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailAvailableGetwayImpl implements EmailAvailableGetway {
 
-    private UserEntityRepository userEntityRepository;
+    private final UserEntityRepository userEntityRepository;
 
     public EmailAvailableGetwayImpl(UserEntityRepository userEntityRepository) {
         this.userEntityRepository = userEntityRepository;
