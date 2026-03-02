@@ -4,40 +4,49 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "TransactionsPin")
+@Table(name= "transactions_pin")
 public class TransactionPinEntity {
 
-    @Column(name = "Id")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Pin", nullable = false)
+    @Column(name = "pin", nullable = false)
     private String pin;
 
-    @Column(name = "Attempt", nullable = false)
+    @Column(name = "attempt", nullable = false)
     private int attempt;
 
-    @Column(name = "Blocked", nullable = false)
+    @Column(name = "blocked", nullable = false)
     private Boolean blocked;
 
-    @Column(name = "CreateAt", nullable = false)
-    private LocalDateTime createAt;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
-    @Column(name = "UpdateAt")
-    private LocalDateTime updateAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-    public TransactionPinEntity(String pin, int attempt, Boolean blocked, LocalDateTime createAt, LocalDateTime updateAt) {
+    public TransactionPinEntity(Long id,String pin, int attempt, Boolean blocked) {
+        this.id = id;
         this.pin = pin;
         this.attempt = attempt;
         this.blocked = blocked;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
+    }
+
+    public TransactionPinEntity(String pin, int attempt, Boolean blocked) {
+        this.pin = pin;
+        this.attempt = attempt;
+        this.blocked = blocked;
     }
 }

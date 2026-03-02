@@ -1,12 +1,17 @@
-CREATE TABLE Transactions (
-    Id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    FromWallet BIGINT NOT NULL,
-    ToWallet BIGINT NOT NULL,
-    TransactionValue DECIMAL(10,2) NOT NULL,
-    Status VARCHAR(30) NOT NULL,
-    CreateAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UpdateAt DATETIME,
+CREATE TABLE transactions (
+    id BIGSERIAL PRIMARY KEY,
+    from_wallet_id BIGINT NOT NULL,
+    to_wallet_id BIGINT NOT NULL,
+    transaction_value NUMERIC(10,2) NOT NULL,
+    status VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE  NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE ,
 
-    FOREIGN KEY (FromWallet) REFERENCES Wallets(Id),
-    FOREIGN KEY (ToWallet) REFERENCES Wallets(Id)
+    CONSTRAINT fk_transaction_from_wallet
+            FOREIGN KEY (from_wallet_id)
+            REFERENCES wallets(id),
+
+        CONSTRAINT fk_transaction_to_wallet
+            FOREIGN KEY (to_wallet_id)
+            REFERENCES wallets(id)
 );

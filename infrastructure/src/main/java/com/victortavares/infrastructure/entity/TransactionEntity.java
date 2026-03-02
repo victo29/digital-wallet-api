@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,41 +15,49 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Transactions")
+@Table(name = "transactions")
 public class TransactionEntity {
 
-    @Column(name = "Id")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "FromWallet")
+    @JoinColumn(name = "from_wallet_id")
     private WalletEntity fromWalletEntity;
 
     @ManyToOne
-    @JoinColumn(name = "ToWallet")
+    @JoinColumn(name = "to_wallet_id")
     private WalletEntity toWalletEntity;
 
-    @Column(name = "TransactionValue", nullable = false)
+    @Column(name = "transaction_value", nullable = false)
     private BigDecimal transactionValue;
 
-    @Column(name = "Status", nullable = false)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TransactionStatusEnum status;
 
-    @Column(name = "CreateAt", nullable = false)
-    private LocalDateTime createAt;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "UpdateAt")
-    private LocalDateTime updateAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-    public TransactionEntity(WalletEntity fromWalletEntity, WalletEntity toWalletEntity, BigDecimal transactionValue, TransactionStatusEnum status, LocalDateTime createAt, LocalDateTime updateAt) {
+    public TransactionEntity(WalletEntity fromWalletEntity, WalletEntity toWalletEntity, BigDecimal transactionValue, TransactionStatusEnum status) {
         this.fromWalletEntity = fromWalletEntity;
         this.toWalletEntity = toWalletEntity;
         this.transactionValue = transactionValue;
         this.status = status;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
+    }
+
+    public TransactionEntity(long id, WalletEntity fromWalletEntity, WalletEntity toWalletEntity, BigDecimal transactionValue, TransactionStatusEnum status) {
+        this.id = id;
+        this.fromWalletEntity = fromWalletEntity;
+        this.toWalletEntity = toWalletEntity;
+        this.transactionValue = transactionValue;
+        this.status = status;
     }
 }

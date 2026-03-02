@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,33 +17,40 @@ import java.time.LocalDateTime;
 @Table
 public class WalletEntity {
 
-    @Column(name = "Id")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Balance", nullable = false)
+    @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
     @OneToOne
-    @JoinColumn(name = "UserId")
+    @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
     @OneToOne
-    @JoinColumn(name = "TransactionPinId")
+    @JoinColumn(name = "transaction_pin_id")
     private TransactionPinEntity transactionPinEntity;
 
-    @Column(name = "CreateAt", nullable = false)
-    private LocalDateTime createAt;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "UpdateAt")
-    private LocalDateTime updateAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-    public WalletEntity(BigDecimal balance, UserEntity userEntity, TransactionPinEntity transactionPinEntity, LocalDateTime createAt, LocalDateTime updateAt) {
+    public WalletEntity(BigDecimal balance, UserEntity userEntity, TransactionPinEntity transactionPinEntity) {
         this.balance = balance;
         this.userEntity = userEntity;
         this.transactionPinEntity = transactionPinEntity;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
+    }
+
+    public WalletEntity(Long id, BigDecimal balance, UserEntity userEntity, TransactionPinEntity transactionPinEntity) {
+        this.id = id;
+        this.balance = balance;
+        this.userEntity = userEntity;
+        this.transactionPinEntity = transactionPinEntity;
     }
 }

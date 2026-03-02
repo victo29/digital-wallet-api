@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,36 +18,48 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name= "Users")
-@Table(name= "Users")
+@Entity(name= "users")
+@Table(name= "users")
 public class UserEntity implements UserDetails {
 
-    @Column(name = "Id", nullable = false)
+    @Column(name = "id", nullable = false)
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "Email", nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "Password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "TaxNumber", nullable = false)
+    @Column(name = "tax_number", nullable = false)
     private String taxNumber;
 
-    @Column(name = "FullName", nullable = false)
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "Type", nullable = false)
+    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserTypeEnum type;
 
-    @Column(name = "CreatedAt", nullable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "UpdateAt")
-    private LocalDateTime updateAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    public UserEntity(UUID id, String email, String password, String taxNumber, String fullName, UserTypeEnum type) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.taxNumber = taxNumber;
+        this.fullName = fullName;
+        this.type = type;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

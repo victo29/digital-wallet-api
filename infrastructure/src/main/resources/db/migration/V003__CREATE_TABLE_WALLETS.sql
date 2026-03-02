@@ -1,11 +1,18 @@
-CREATE TABLE Wallets(
-    Id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    Balance DECIMAL(10,2) NOT NULL,
-    UserId UUID NOT NULL UNIQUE,
-    TransactionPinId BIGINT NOT NULL UNIQUE,
-    CreateAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UpdateAt DATETIME,
+CREATE TABLE wallets(
+    id BIGSERIAL PRIMARY KEY,
+    balance NUMERIC(10,2) NOT NULL,
+    user_id UUID NOT NULL UNIQUE,
+    transaction_pin_id BIGINT NOT NULL UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL ,
+    updated_at TIMESTAMP WITH TIME ZONE,
 
-    FOREIGN KEY (UserId) REFERENCES Users(Id),
-    FOREIGN KEY (TransactionPinId) REFERENCES TransactionsPin(Id)
+     CONSTRAINT fk_wallet_user
+            FOREIGN KEY (user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE,
+
+        CONSTRAINT fk_wallet_pin
+            FOREIGN KEY (transaction_pin_id)
+            REFERENCES transactions_pin(id)
+            ON DELETE CASCADE
 );
