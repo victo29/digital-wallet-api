@@ -20,7 +20,7 @@ public enum ErrorCodeEnum {
 
     NO0001("Houve um erro na notificação do usuário","NO-0001"),
 
-    ATH0001("Houve um erro na autenticação", "ATH-0001"),
+    ATH0001("Usuário ou senha inválidos", "ATH-0001"),
 
     RQ0001("Invalid request", "RQ-0001")
 

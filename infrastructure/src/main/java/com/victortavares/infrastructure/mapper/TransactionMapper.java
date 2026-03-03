@@ -3,7 +3,6 @@ package com.victortavares.infrastructure.mapper;
 import com.victortavares.core.domain.Transaction;
 import com.victortavares.core.domain.enums.TransactionStatusEnum;
 import com.victortavares.infrastructure.entity.TransactionEntity;
-import com.victortavares.infrastructure.entity.WalletEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,9 +18,7 @@ public class TransactionMapper {
                 walletMapper.toWalletEntity(transaction.getFromWallet()),
                 walletMapper.toWalletEntity(transaction.getToWallet()),
                 transaction.getValue(),
-                transaction.getStatus(),
-                transaction.getCreatedAt(),
-                transaction.getUpdateAt()
+                transaction.getStatus()
         );
     }
 
@@ -30,9 +27,7 @@ public class TransactionMapper {
                 walletMapper.toWalletEntity(transaction.getFromWallet()),
                 walletMapper.toWalletEntity(transaction.getToWallet()),
                 transaction.getValue(),
-                TransactionStatusEnum.CREATED,
-                transaction.getCreatedAt(),
-                transaction.getUpdateAt()
+                TransactionStatusEnum.CREATED
         );
     }
 
@@ -43,8 +38,8 @@ public class TransactionMapper {
                 walletMapper.toWallet(transactionEntity.getToWalletEntity()),
                 transactionEntity.getTransactionValue(),
                 transactionEntity.getStatus(),
-                transactionEntity.getCreateAt(),
-                transactionEntity.getUpdateAt()
+                transactionEntity.getCreatedAt(),
+                transactionEntity.getUpdatedAt()
         );
     }
 
@@ -54,9 +49,7 @@ public class TransactionMapper {
                 walletMapper.toWalletEntity(transaction.getFromWallet()),
                 walletMapper.toWalletEntity(transaction.getToWallet()),
                 transaction.getValue(),
-                TransactionStatusEnum.SUCCESS,
-                transaction.getCreatedAt(),
-                transaction.getUpdateAt()
+                TransactionStatusEnum.SUCCESS
         );
     }
 
@@ -66,9 +59,7 @@ public class TransactionMapper {
                 walletMapper.toWalletEntity(transaction.getFromWallet()),
                 walletMapper.toWalletEntity(transaction.getToWallet()),
                 transaction.getValue(),
-                TransactionStatusEnum.CANCELED,
-                transaction.getCreatedAt(),
-                transaction.getUpdateAt()
+                TransactionStatusEnum.CANCELED
         );
     }
 }

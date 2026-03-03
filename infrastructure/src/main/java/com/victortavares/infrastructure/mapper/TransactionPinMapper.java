@@ -12,9 +12,15 @@ public class TransactionPinMapper {
                 transactionPin.getId(),
                 transactionPin.getPin(),
                 transactionPin.getAttempt(),
-                transactionPin.getBlocked(),
-                transactionPin.getCreatedAt(),
-                transactionPin.getUpdateAt()
+                transactionPin.getBlocked()
+        );
+    }
+
+    public TransactionPinEntity toCreateTransactionPinEntity(TransactionPin transactionPin){
+        return new TransactionPinEntity(
+                transactionPin.getPin(),
+                transactionPin.getAttempt(),
+                transactionPin.getBlocked()
         );
     }
 
@@ -24,8 +30,8 @@ public class TransactionPinMapper {
             transactionPinEntity.getPin(),
             transactionPinEntity.getAttempt(),
             transactionPinEntity.getBlocked(),
-            transactionPinEntity.getCreateAt(),
-            transactionPinEntity.getUpdateAt()
+            transactionPinEntity.getCreatedAt(),
+            transactionPinEntity.getUpdatedAt()
         );
 
     }

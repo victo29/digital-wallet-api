@@ -46,14 +46,7 @@ public class TransactionPin {
     }
 
     public void setPin(String pin) throws TransactionPinException {
-        pinIsValid(pin);
         this.pin = pin;
-    }
-
-    private void pinIsValid(String pin) throws TransactionPinException {
-        if (pin.length() != 8){
-            throw new TransactionPinException(ErrorCodeEnum.TRP0001.getMessage(), ErrorCodeEnum.TRP0001.getCode());
-        }
     }
 
     public Integer getAttempt() {
