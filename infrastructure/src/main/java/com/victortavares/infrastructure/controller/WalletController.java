@@ -4,10 +4,11 @@ import com.victortavares.infrastructure.dto.request.TransferRequest;
 import com.victortavares.infrastructure.dto.response.BaseResponse;
 import com.victortavares.infrastructure.dto.response.ConsultBalanceResponse;
 import com.victortavares.usecase.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/wallet")
+@RequestMapping("/api/v1/wallet")
 public class WalletController {
 
     private final ConsultBalanceUseCase consultBalanceUseCase;
@@ -28,6 +29,7 @@ public class WalletController {
         this.userNotificationUseCase = userNotificationUseCase;
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/consultBalance/{taxNumber}")
     public BaseResponse<ConsultBalanceResponse> consultBalance(@PathVariable String taxNumber) throws Exception {
         var balance =  consultBalanceUseCase.consult(taxNumber);
@@ -36,9 +38,10 @@ public class WalletController {
     }
 
     @PostMapping("/transfer")
+    @ResponseStatus(HttpStatus.OK)
     public BaseResponse<String> transfer( @RequestBody TransferRequest transferRequest) throws Exception {
         var from =  findWalletByTaxNumberUseCase.findByTaxNumber(transferRequest.fromTaxNumber());
-        transactionPinValidateUseCase.validate(from.getTransactionPin(), transferRequest.pin());
+        transactionPinValidateUseCase.compare(from.getTransactionPin(), transferRequest.pin());
         var to =  findWalletByTaxNumberUseCase.findByTaxNumber(transferRequest.toTaxNumber());
         var transaction = createTransactionUseCase.create(from, to, transferRequest.value());
         transactionValidateUseCase.validate(transaction);
