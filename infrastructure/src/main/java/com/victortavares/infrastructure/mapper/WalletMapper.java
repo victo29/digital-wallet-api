@@ -21,9 +21,7 @@ public class WalletMapper {
         return new WalletEntity(
                 wallet.getBalance(),
                 userEntity,
-                transactionPinEntity,
-                wallet.getCreatedAt(),
-                wallet.getUpdateAt()
+                transactionPinEntity
         );
     }
 
@@ -32,9 +30,7 @@ public class WalletMapper {
                 wallet.getId(),
                 wallet.getBalance(),
                 userMapper.toUserEntity(wallet.getUser()),
-                transactionPinMapper.toTransactionPinEntity(wallet.getTransactionPin()),
-                wallet.getCreatedAt(),
-                wallet.getUpdateAt()
+                transactionPinMapper.toTransactionPinEntity(wallet.getTransactionPin())
         );
     }
 
@@ -47,8 +43,8 @@ public class WalletMapper {
             walletEntity.getId(),
             walletEntity.getBalance(),
             userMapper.toUser(walletEntity.getUserEntity()),
-            walletEntity.getCreateAt(),
-            walletEntity.getUpdateAt(),
+            walletEntity.getCreatedAt(),
+            walletEntity.getUpdatedAt(),
             transactionPinMapper.toTransactionPin(walletEntity.getTransactionPinEntity())
         );
     }

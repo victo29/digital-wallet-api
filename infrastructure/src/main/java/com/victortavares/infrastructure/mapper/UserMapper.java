@@ -16,9 +16,7 @@ public class UserMapper {
                 user.getPassword(),
                 user.getTaxNumber().getValue(),
                 user.getFullname(),
-                user.getType(),
-                user.getCreatedAt(),
-                user.getUpdateAt()
+                user.getType()
         );
     }
 
@@ -41,7 +39,7 @@ public class UserMapper {
                 userEntity.getFullName(),
                 userEntity.getType(),
                 userEntity.getCreatedAt(),
-                userEntity.getUpdateAt()
+                userEntity.getUpdatedAt()
         );
     }
 }
