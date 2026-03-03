@@ -38,7 +38,7 @@ public class CreateUserGatewayImpl implements CreateUserGeteway {
         try{
             log.info("Initializing creation user::CreateUserGatewayImpl");
             var userSaved = userEntityRepository.save(userMapper.toUserEntity(user));
-            var transactionPinSaved = transactionPinEntityRepository.save(transactionPinMapper.toTransactionPinEntity(wallet.getTransactionPin()));
+            var transactionPinSaved = transactionPinEntityRepository.save(transactionPinMapper.toCreateTransactionPinEntity(wallet.getTransactionPin()));
             walletEntityRepository.save(walletMapper.toWalletEntity(wallet ,userSaved, transactionPinSaved));
             log.info("User created successfully::CreateUserGatewayImpl");
             return true;
