@@ -5,5 +5,7 @@ import com.victortavares.core.exception.InternalServerErrorException;
 import com.victortavares.core.exception.TransactionPinException;
 
 public interface TransactionPinValidateUseCase {
-    Boolean validate(TransactionPin transactionPin, String pin) throws TransactionPinException, InternalServerErrorException;
+    Boolean compare(TransactionPin transactionPin, String pin) throws TransactionPinException, InternalServerErrorException;
+
+    TransactionPin validate(String pin) throws TransactionPinException;
 }
