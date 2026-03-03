@@ -7,6 +7,7 @@ import com.victortavares.infrastructure.dto.response.ErrorResponse;
 import com.victortavares.infrastructure.dto.response.ValidationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -117,7 +118,7 @@ public class HandleControllerAdivice {
     }
 
     @ExceptionHandler(TransferException.class)
-    public  ResponseEntity<BaseResponse<String>> handleTaxNumberException(TransferException ex, WebRequest request){
+    public ResponseEntity<BaseResponse<String>> handleTaxNumberException(TransferException ex, WebRequest request){
 
         var error = new ErrorResponse(
                 ex.getMessage(),
@@ -126,5 +127,18 @@ public class HandleControllerAdivice {
         );
 
         return new ResponseEntity<>(BaseResponse.<String>builder().success(false).error(error).build(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<BaseResponse<String>> handleAuthenticationException( AuthenticationException ex, WebRequest request){
+
+       var error = new ErrorResponse(
+               ErrorCodeEnum.ATH0001.getMessage(),
+               ErrorCodeEnum.ATH0001.getCode(),
+               null
+       );
+
+        return new ResponseEntity<>(BaseResponse.<String>builder().success(false).error(error).build(), HttpStatus.UNAUTHORIZED);
+
     }
 }

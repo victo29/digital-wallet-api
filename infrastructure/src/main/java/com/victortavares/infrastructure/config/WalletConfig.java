@@ -40,8 +40,8 @@ public class WalletConfig {
     }
 
     @Bean
-    public TransactionPinValidateUseCase transactionPinValidateUseCase(UpdateTransactionPinUseCase updateTransactionPinUseCase) {
-        return new TransactionPinValidateUseCaseImpl(updateTransactionPinUseCase);
+    public TransactionPinValidateUseCase transactionPinValidateUseCase(UpdateTransactionPinUseCase updateTransactionPinUseCase, EncryptorGateway encryptorGateway) {
+        return new TransactionPinValidateUseCaseImpl(updateTransactionPinUseCase, encryptorGateway);
     }
 
     @Bean

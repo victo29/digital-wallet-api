@@ -2,6 +2,7 @@ package com.victortavares.infrastructure.config;
 
 import com.victortavares.gateway.CreateUserGeteway;
 import com.victortavares.gateway.EmailAvailableGetway;
+import com.victortavares.gateway.EncryptorGateway;
 import com.victortavares.gateway.TaxNumberAvailableGateway;
 import com.victortavares.usecase.CreateUserUseCase;
 import com.victortavares.usecase.EmailAvailableUseCase;
@@ -25,7 +26,7 @@ public class UserConfig {
     }
 
     @Bean
-    public CreateUserUseCase createUserUseCase(CreateUserGeteway createUserGeteway){
-        return new CreateUserUseCaseImpl(createUserGeteway);
+    public CreateUserUseCase createUserUseCase(CreateUserGeteway createUserGeteway, EncryptorGateway encryptorGateway){
+        return new CreateUserUseCaseImpl(createUserGeteway, encryptorGateway);
     }
 }

@@ -12,5 +12,5 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, UUID> {
 
     Boolean existsByEmail(String email);
 
-    UserDetails findByTaxNumber(String taxNumber);
+    UserDetails findByEmail(String email);
 }
