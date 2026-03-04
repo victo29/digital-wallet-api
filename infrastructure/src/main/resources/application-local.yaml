@@ -12,7 +12,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 security:
   jwt:
-    secret: 0412c946-a382-4be6-9245-ebde9ef911dd
+    secret: ${JWT_SECRET}
     expiration: 900
 
 client:
