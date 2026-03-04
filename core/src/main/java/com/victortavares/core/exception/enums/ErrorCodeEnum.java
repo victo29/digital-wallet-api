@@ -22,6 +22,9 @@ public enum ErrorCodeEnum {
 
     ATH0001("Usuário ou senha inválidos", "ATH-0001"),
 
+    TKN0001("Houve um erro ao gerar o token", "TK-0001"),
+    TKN0002("Houve um erro decodificar o token", "TK-0002"),
+
     RQ0001("Invalid request", "RQ-0001")
 
 
